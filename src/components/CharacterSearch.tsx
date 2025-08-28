@@ -1,8 +1,16 @@
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCharacters } from '../servises/thunks/charactersThunk';
 
-function CharacterSearch() {
+export default function CharacterSearch() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCharacters());
+  }, []);
+
   return (
     <div className="border-2 border-white sm:w-11/12 md:w-10/12 lg:w-8/12 xl:w-6/12 rounded-2xl font-get-schwifty bg-inherit text-inherit mt-3 max-sm:border-none max-sm:w-full">
       <div className="flex items-center rounded-2xl flex-col p-6 gap-4 bg-inherit ">
@@ -40,5 +48,3 @@ function CharacterSearch() {
     </div>
   );
 }
-
-export default CharacterSearch;
