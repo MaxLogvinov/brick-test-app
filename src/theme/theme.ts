@@ -13,5 +13,25 @@ export const theme = createTheme({
     text: {
       primary: '#ffffff'
     }
+  },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        input: {
+          padding: 0,
+          paddingLeft: 8
+        },
+        root: {
+          padding: 0
+        }
+      }
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          paddingLeft: 8
+        }
+      }
+    }
   }
 });

@@ -14,6 +14,8 @@ import Loading from './Loading';
 import CharacterAccordion from './CharacterAccordion';
 import type { Character } from '../types/types';
 import { setName, setSpecies, setStatus } from '../servises/slices/characterSlice';
+import { Box, Typography, Select, MenuItem, TextField } from '@mui/material';
+import type { SelectChangeEvent } from '@mui/material/Select';
 
 const DEBOUNCE_DELAY = 1000;
 
@@ -42,64 +44,64 @@ const CharacterSearch: React.FC = () => {
     return () => clearTimeout(handler);
   }, [name, status, species, dispatch]);
 
-  // Обработчик для сброса статуса
-  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleStatusChange = (e: SelectChangeEvent<string>) => {
     const value = e.target.value === 'reset' ? undefined : e.target.value;
     dispatch(setStatus(value));
   };
 
-  // Обработчик для сброса вида
-  const handleSpeciesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSpeciesChange = (e: SelectChangeEvent<string>) => {
     const value = e.target.value === 'reset' ? undefined : e.target.value;
     dispatch(setSpecies(value));
   };
 
   return (
-    <div className="border-2 border-white sm:w-11/12 md:w-10/12 lg:w-8/12 xl:w-6/12 rounded-2xl font-get-schwifty bg-inherit text-inherit mt-3 max-sm:border-none max-sm:w-full">
-      <div className="flex items-center rounded-2xl flex-col p-6 gap-4 bg-inherit ">
-        <h1 className=" sm:text-2xl lg:text-3xl xl:text-4xl">The universe of Rick and Morty</h1>
-        <label className="flex flex-col w-full">
+    <Box className="border-2 border-white sm:w-11/12 md:w-10/12 lg:w-8/12 xl:w-6/12 rounded-2xl font-get-schwifty bg-inherit text-inherit mt-3 max-sm:border-none max-sm:w-full">
+      <Box className="flex items-center rounded-2xl flex-col p-6 gap-4 bg-inherit ">
+        <Typography variant="h4" component="h1" className=" sm:text-2xl lg:text-3xl xl:text-4xl">
+          The universe of Rick and Morty
+        </Typography>
+        <Typography component={'label'} className="flex flex-col w-full">
           Character name
-          <input
+          <TextField
             type="text"
             value={name}
             className="pl-1.5 rounded-lg bg-inherit border border-solid border-gray-300"
             onChange={e => dispatch(setName(e.target.value))}
             placeholder="Enter the character's name"
           />
-        </label>
-        <div className="flex items-center justify-between w-full gap-8 bg-inherit max-sm:flex-col">
-          <label className="flex flex-col w-full bg-inherit">
+        </Typography>
+        <Box className="flex items-center justify-between w-full gap-8 bg-inherit max-sm:flex-col">
+          <Typography component={'label'} className="flex flex-col w-full bg-inherit">
             Alive?
-            <select
+            <Select
               className="pl-1.5 rounded-lg bg-inherit border border-solid border-gray-300 cursor-pointer"
               value={status ?? 'reset'}
               onChange={handleStatusChange}
             >
-              <option value="reset">select status / reset</option>
+              <MenuItem value="reset">select status / reset</MenuItem>
               {statusOptions.map(status => (
-                <option key={status} value={status}>
+                <MenuItem key={status} value={status}>
                   {status}
-                </option>
+                </MenuItem>
               ))}
-            </select>
-          </label>
-          <label className="flex flex-col w-full bg-inherit">
+            </Select>
+          </Typography>
+          <Typography component={'label'} className="flex flex-col w-full bg-inherit">
             Species
-            <select
+            <Select
               className="pl-1.5 rounded-lg bg-inherit border border-solid border-gray-300 cursor-pointer"
               value={species ?? 'reset'}
               onChange={handleSpeciesChange}
             >
-              <option value="reset">select species / reset</option>
+              <MenuItem value="reset">select species / reset</MenuItem>
               {speciesOptions.map(species => (
-                <option key={species} value={species}>
+                <MenuItem key={species} value={species}>
                   {species}
-                </option>
+                </MenuItem>
               ))}
-            </select>
-          </label>
-        </div>
+            </Select>
+          </Typography>
+        </Box>
         <Accordion className="w-full bg-zinc-800 border-white text-inherit flex flex-col rounded-2xl">
           <AccordionSummary>Episodes:</AccordionSummary>
           <AccordionDetails>
@@ -107,10 +109,10 @@ const CharacterSearch: React.FC = () => {
           </AccordionDetails>
         </Accordion>
         {error && <p className="text-4xl max-sm:text-base">Error: Characters not found</p>}
-      </div>
+      </Box>
       <CharacterAccordion />
       {loading && <Loading />}
-    </div>
+    </Box>
   );
 };
 

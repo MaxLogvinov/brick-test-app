@@ -1,7 +1,7 @@
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import { Avatar } from '@mui/material';
+import { Avatar, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState, AppDispatch } from '../servises/store';
 import Pagination from '@mui/material/Pagination';
@@ -20,7 +20,7 @@ const CharacterAccordion: React.FC = () => {
   };
 
   return (
-    <div className="py-1 px-0.5 bg-inherit text-inherit flex flex-col items-center mb-3">
+    <Box className="py-1 px-0.5 bg-inherit text-inherit flex flex-col items-center mb-3">
       {characters.map(character => (
         <Accordion
           className="bg-zinc-800 w-full border-white text-inherit flex flex-col rounded-2xl"
@@ -81,7 +81,7 @@ const CharacterAccordion: React.FC = () => {
       >
         <Pagination count={info.pages} onChange={handlePageChange} color="primary" />
       </Stack>
-    </div>
+    </Box>
   );
 };
 
