@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCharacters } from '../servises/thunks/charactersThunk';
 import type { RootState } from '../servises/store';
@@ -19,7 +19,8 @@ import type { SelectChangeEvent } from '@mui/material/Select';
 
 const DEBOUNCE_DELAY = 1000;
 
-const CharacterSearch: React.FC = () => {
+export default function CharacterSearch() {
+  const [expanded, setExpanded] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error, name, status, species } = useSelector(
     (state: RootState) => state.characters
@@ -112,10 +113,16 @@ const CharacterSearch: React.FC = () => {
             </Typography>
           </FormControl>
         </Box>
-        <Accordion className="w-full bg-zinc-800 border-white text-inherit flex flex-col rounded-2xl">
+        <Accordion
+          expanded={expanded}
+          onChange={(_, isExpanded) => setExpanded(isExpanded)}
+          className="w-full bg-zinc-800 border-white text-inherit flex flex-col rounded-2xl"
+        >
           <AccordionSummary>Episodes:</AccordionSummary>
           <AccordionDetails>
-            {episodes.length > 0 && <Episodes episodes={episodes} />}
+            {episodes.length > 0 && (
+              <Episodes episodes={episodes} onClose={() => setExpanded(false)} />
+            )}
           </AccordionDetails>
         </Accordion>
         {error && <p className="text-4xl max-sm:text-base">Error: Characters not found</p>}
@@ -124,6 +131,4 @@ const CharacterSearch: React.FC = () => {
       {loading && <Loading />}
     </Box>
   );
-};
-
-export default CharacterSearch;
+}

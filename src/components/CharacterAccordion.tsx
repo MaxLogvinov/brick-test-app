@@ -8,7 +8,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { fetchCharacters } from '../servises/thunks/charactersThunk';
 
-const CharacterAccordion: React.FC = () => {
+export default function CharacterAccordion() {
   const { characters, info, name, status, species } = useSelector(
     (state: RootState) => state.characters
   );
@@ -97,6 +97,4 @@ const CharacterAccordion: React.FC = () => {
       </Stack>
     </Box>
   );
-};
-
-export default CharacterAccordion;
+}

@@ -1,4 +1,3 @@
-import React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -11,9 +10,10 @@ import { Box, Typography, Button } from '@mui/material';
 
 interface EpisodesProps {
   episodes: Episode[];
+  onClose: () => void;
 }
 
-const Episodes: React.FC<EpisodesProps> = ({ episodes }) => {
+export default function Episodes({ episodes, onClose }: EpisodesProps) {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleEpisodeClick = (characterUrls: string[]) => {
@@ -21,6 +21,7 @@ const Episodes: React.FC<EpisodesProps> = ({ episodes }) => {
     dispatch(setName(''));
     dispatch(setSpecies(''));
     dispatch(setStatus(''));
+    onClose();
   };
 
   return (
@@ -42,6 +43,4 @@ const Episodes: React.FC<EpisodesProps> = ({ episodes }) => {
       ))}
     </Box>
   );
-};
-
-export default Episodes;
+}
