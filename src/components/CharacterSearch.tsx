@@ -20,7 +20,7 @@ import type { SelectChangeEvent } from '@mui/material/Select';
 const DEBOUNCE_DELAY = 1000;
 
 export default function CharacterSearch() {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error, name, status, species } = useSelector(
     (state: RootState) => state.characters
