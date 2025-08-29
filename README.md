@@ -1,69 +1,72 @@
-# React + TypeScript + Vite
+# Приложение для поиска персонажей во вселенной "Рик и Морти"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Данный проект представляет собой веб-приложение для поиска персонажей из вселенной "Рик и Морти", разработанное с использованием React, Vite, Redux Toolkit и Tailwind CSS. Приложение использует Rick and Morty API для получения данных о персонажах и предоставляет функциональность фильтрации и сортировки данных.
 
-Currently, two official plugins are available:
+## Технологии и библиотеки
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: библиотека для создания пользовательских интерфейсов.
+- **Vite**: современный инструмент сборки для фронтенд-приложений, обеспечивающий сверхбыструю разработку благодаря нативным ES-модулям и эффективной оптимизации сборки.
+- **TypeScript**: язык программирования с поддержкой статической типизации.
+- **Tailwind CSS**: утилитарный CSS-фреймворк для стилизации.
+- **MUI (Material-UI)**: библиотека компонентов для создания UI.
+- **Redux Toolkit**: инструмент для работы с глобальным состоянием и асинхронными действиями.
+- **Rick and Morty API**: источник данных о персонажах, эпизодах и локациях.
 
-## Expanding the ESLint configuration
+## Функциональность
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Поиск персонажей** по заданным критериям.
+2. **Фильтрация данных:**
+   - По статусу (Alive, Dead, Unknown).
+   - По виду (Species).
+3. **Сортировка данных** по имени персонажа.
+4. **Пагинация** для удобной навигации по результатам.
+5. **Отображение детальной информации о персонаже**, включая:
+   - Имя
+   - Пол
+   - Статус
+   - Вид
+   - Аватар
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Установка и запуск проекта
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/MaxLogvinov/brick-test-app.git
+   cd brick-test-app
+   ```
+2. Установите зависимости:
+   ```sh
+   npm install
+   # или
+   yarn install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Запуск приложения
+
+Для запуска сервера разработки выполните:
+
+```sh
+npm run dev
+# или
+yarn dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Приложение будет доступно по адресу http://localhost:5173.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Деплой на GH Pages
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**[Ссылка на сайт](https://maxlogvinov.github.io/brick-test-app/)**
+
+#### Задача
+
+Проект реализует тестовое задание для собеседования на позицию Frontend-разработчика:
+
+Использован Rick and Morty API для получения данных о персонажах.
+Реализована фильтрация, сортировка и пагинация данных.
+Использованы современные технологии: React, Vite, Redux Toolkit, Tailwind CSS и TypeScript.
+
+#### Возможные улучшения
+
+Добавить фильтрацию по локациям.
+Реализовать возможность сохранения избранных персонажей.
+Добавить тестирование компонентов с использованием Jest и React Testing Library.

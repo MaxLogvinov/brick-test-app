@@ -15,7 +15,7 @@ export default function CharacterAccordion() {
   const { episodes } = useSelector((state: RootState) => state.episodes);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, page: number) => {
     dispatch(fetchCharacters({ name, status, species, page }));
   };
 
