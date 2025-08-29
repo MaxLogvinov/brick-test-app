@@ -113,18 +113,18 @@ export default function CharacterSearch() {
             </Typography>
           </FormControl>
         </Box>
-        <Accordion
-          expanded={expanded}
-          onChange={(_, isExpanded) => setExpanded(isExpanded)}
-          className="w-full bg-zinc-800 border-white text-inherit flex flex-col rounded-2xl"
-        >
-          <AccordionSummary>Episodes:</AccordionSummary>
-          <AccordionDetails>
-            {episodes.length > 0 && (
+        {episodes.length > 0 && (
+          <Accordion
+            expanded={expanded}
+            onChange={(_, isExpanded) => setExpanded(isExpanded)}
+            className="w-full bg-zinc-800 border-white text-inherit flex flex-col rounded-2xl"
+          >
+            <AccordionSummary>Episodes:</AccordionSummary>
+            <AccordionDetails>
               <Episodes episodes={episodes} onClose={() => setExpanded(false)} />
-            )}
-          </AccordionDetails>
-        </Accordion>
+            </AccordionDetails>
+          </Accordion>
+        )}
         {error && <p className="text-4xl max-sm:text-base">Error: Characters not found</p>}
       </Box>
       <CharacterAccordion />
