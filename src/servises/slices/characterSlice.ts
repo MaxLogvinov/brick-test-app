@@ -8,8 +8,8 @@ const initialState: CharacterState = {
   loading: false,
   error: null,
   name: '',
-  species: '',
-  status: ''
+  species: undefined,
+  status: undefined
 };
 
 const characterSlice = createSlice({

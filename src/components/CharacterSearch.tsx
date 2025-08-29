@@ -14,7 +14,7 @@ import Loading from './Loading';
 import CharacterAccordion from './CharacterAccordion';
 import type { Character } from '../types/types';
 import { setName, setSpecies, setStatus } from '../servises/slices/characterSlice';
-import { Box, Typography, Select, MenuItem, TextField } from '@mui/material';
+import { Box, Typography, Select, MenuItem, TextField, FormControl } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material/Select';
 
 const DEBOUNCE_DELAY = 1000;
@@ -57,50 +57,60 @@ const CharacterSearch: React.FC = () => {
   return (
     <Box className="border-2 border-white sm:w-11/12 md:w-10/12 lg:w-8/12 xl:w-6/12 rounded-2xl font-get-schwifty bg-inherit text-inherit mt-3 max-sm:border-none max-sm:w-full">
       <Box className="flex items-center rounded-2xl flex-col p-6 gap-4 bg-inherit ">
-        <Typography variant="h4" component="h1" className=" sm:text-2xl lg:text-3xl xl:text-4xl">
+        <Typography
+          variant="h4"
+          component="h1"
+          className=" sm:text-2xl lg:text-3xl xl:text-4xl text-center"
+        >
           The universe of Rick and Morty
         </Typography>
-        <Typography component={'label'} className="flex flex-col w-full">
-          Character name
-          <TextField
-            type="text"
-            value={name}
-            className="pl-1.5 rounded-lg bg-inherit border border-solid border-gray-300"
-            onChange={e => dispatch(setName(e.target.value))}
-            placeholder="Enter the character's name"
-          />
-        </Typography>
+        <FormControl fullWidth>
+          <Typography component={'label'} className="flex flex-col w-full">
+            Character name
+            <TextField
+              type="text"
+              value={name}
+              className="pl-1.5 rounded-lg bg-inherit border border-solid border-gray-300"
+              onChange={e => dispatch(setName(e.target.value))}
+              placeholder="Enter the character's name"
+            />
+          </Typography>
+        </FormControl>
         <Box className="flex items-center justify-between w-full gap-8 bg-inherit max-sm:flex-col">
-          <Typography component={'label'} className="flex flex-col w-full bg-inherit">
-            Alive?
-            <Select
-              className="pl-1.5 rounded-lg bg-inherit border border-solid border-gray-300 cursor-pointer"
-              value={status ?? 'reset'}
-              onChange={handleStatusChange}
-            >
-              <MenuItem value="reset">select status / reset</MenuItem>
-              {statusOptions.map(status => (
-                <MenuItem key={status} value={status}>
-                  {status}
-                </MenuItem>
-              ))}
-            </Select>
-          </Typography>
-          <Typography component={'label'} className="flex flex-col w-full bg-inherit">
-            Species
-            <Select
-              className="pl-1.5 rounded-lg bg-inherit border border-solid border-gray-300 cursor-pointer"
-              value={species ?? 'reset'}
-              onChange={handleSpeciesChange}
-            >
-              <MenuItem value="reset">select species / reset</MenuItem>
-              {speciesOptions.map(species => (
-                <MenuItem key={species} value={species}>
-                  {species}
-                </MenuItem>
-              ))}
-            </Select>
-          </Typography>
+          <FormControl fullWidth>
+            <Typography component={'label'} className="flex flex-col w-full bg-inherit">
+              Alive?
+              <Select
+                className="pl-1.5 rounded-lg bg-inherit border border-solid border-gray-300 cursor-pointer"
+                value={status ?? 'reset'}
+                onChange={handleStatusChange}
+              >
+                <MenuItem value="reset">select status / reset</MenuItem>
+                {statusOptions.map(status => (
+                  <MenuItem key={status} value={status}>
+                    {status}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Typography>
+          </FormControl>
+          <FormControl fullWidth>
+            <Typography component={'label'} className="flex flex-col w-full bg-inherit">
+              Species
+              <Select
+                className="pl-1.5 rounded-lg bg-inherit border border-solid border-gray-300 cursor-pointer"
+                value={species ?? 'reset'}
+                onChange={handleSpeciesChange}
+              >
+                <MenuItem value="reset">select species / reset</MenuItem>
+                {speciesOptions.map(species => (
+                  <MenuItem key={species} value={species}>
+                    {species}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Typography>
+          </FormControl>
         </Box>
         <Accordion className="w-full bg-zinc-800 border-white text-inherit flex flex-col rounded-2xl">
           <AccordionSummary>Episodes:</AccordionSummary>
